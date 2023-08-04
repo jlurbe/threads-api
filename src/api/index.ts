@@ -19,6 +19,10 @@ app.get('/api/users/:userName', async (context) => {
   return context.json(data);
 });
 
+app.use('*', async (c, next) => {
+  c.json({ error: 'Not found', status: 404 });
+});
+
 export default {
   port,
   fetch: app.fetch, // <----- Esto es algo especial de Bun
