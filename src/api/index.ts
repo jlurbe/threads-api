@@ -4,12 +4,13 @@ import { ThreadsUserProfileResponse } from '../types/threads-api';
 
 const port = +(Bun.env.PORT ?? 3000);
 const app = new Hono();
-// app.get('api/users/:userId', async (context) => {
-//   const userId = context.req.param('userId');
-//   const data = await fetchUserProfile({ userId });
 
-//   return context.json(data);
-// });
+app.get('/api/users', async (context) => {
+  const userId = context.req.query('userId');
+  const data = await fetchUserProfile({ userId });
+
+  return context.json(data);
+});
 
 app.get('/api/users/:userName', async (context) => {
   const userName = context.req.param('userName');
