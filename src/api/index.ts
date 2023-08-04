@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 import { fetchUserProfile } from '../lib';
 import { ThreadsUserProfileResponse } from '../types/threads-api';
 
-const port = +(Bun.env.PORT ?? 1234);
+const port = +(Bun.env.PORT ?? 3000);
 const app = new Hono();
 // app.get('api/users/:userId', async (context) => {
 //   const userId = context.req.param('userId');
@@ -12,7 +12,6 @@ const app = new Hono();
 // });
 
 app.get('/api/users/:userName', async (context) => {
-  console.log('ok');
   const userName = context.req.param('userName');
   const data = await fetchUserProfile({ userName });
 
